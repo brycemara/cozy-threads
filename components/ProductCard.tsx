@@ -15,8 +15,6 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [cart, setCart] = useState([])
 
-  console.log(cart)
-
   useEffect(() => {
     setCart(getCart())
   }, [])
@@ -32,7 +30,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   }
 
   const getProductQuantity = (productId: string) => {
-    const item = cart.find((item) => item.id === productId)
+    const item = cart.find(
+      (item: { id: string; quantity: number }) => item.id === productId
+    )
     return item ? item.quantity : 0
   }
 
@@ -46,14 +46,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           ${product.price.toFixed(2)}
         </p>
       </div>
-      <div className="px-6 pt-4 pb-2">
+      <div className="flex justify-center pt-4 pb-2">
         <button
           onClick={() => handleRemoveFromCart(product.id)}
           className="font-bold py-2 px-4 rounded"
         >
           -
         </button>
-        <span className="mx-2">{getProductQuantity(product.id)}</span>
+        <span className="mx-2 border py-2 px-4">
+          {getProductQuantity(product.id)}
+        </span>
         <button
           onClick={() => handleAddToCart(product.id)}
           className="font-bold py-2 px-4 rounded"

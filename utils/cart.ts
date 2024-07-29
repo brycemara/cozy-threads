@@ -1,6 +1,11 @@
+interface Item {
+  quantity: number
+  id: string
+}
+
 export const addToCart = (productId: string) => {
   let cart = JSON.parse(localStorage.getItem("cart") || "[]")
-  const index = cart.findIndex((item: string) => item.id === productId)
+  const index = cart.findIndex((item: Item) => item.id === productId)
   if (index !== -1) {
     cart[index].quantity += 1
   } else {
@@ -11,7 +16,7 @@ export const addToCart = (productId: string) => {
 
 export const removeFromCart = (productId: string) => {
   let cart = JSON.parse(localStorage.getItem("cart") || "[]")
-  const index = cart.findIndex((item: any) => item.id === productId)
+  const index = cart.findIndex((item: Item) => item.id === productId)
   if (index !== -1) {
     if (cart[index].quantity > 1) {
       cart[index].quantity -= 1
