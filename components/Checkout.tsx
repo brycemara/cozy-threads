@@ -1,4 +1,5 @@
 import getStripe from "@/utils/stripe"
+import { Button } from "@chakra-ui/react"
 
 const stripePromise = getStripe()
 
@@ -21,8 +22,10 @@ export default function Checkout() {
   }
 
   return (
-    <div>
-      <button onClick={handleCheckout}>Checkout</button>
+    <div className="w-full flex justify-center">
+      <Button colorScheme="teal" onClick={handleCheckout}>
+        Checkout
+      </Button>
     </div>
   )
 }
