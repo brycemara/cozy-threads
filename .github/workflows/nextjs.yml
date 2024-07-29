@@ -78,10 +78,10 @@ jobs:
         env:
           NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
       - name: Build with Next.js
+        run: ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
           NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
