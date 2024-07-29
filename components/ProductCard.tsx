@@ -1,6 +1,5 @@
 "use client"
 import React, { useState, useEffect } from "react"
-// components/ProductCard.tsx
 import { getCart, addToCart, removeFromCart } from "@/utils/cart"
 
 interface ProductCardProps {
