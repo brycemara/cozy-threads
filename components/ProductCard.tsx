@@ -12,6 +12,11 @@ interface ProductCardProps {
   }
 }
 
+interface CartItem {
+  id: string
+  quantity: number
+}
+
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [cart, setCart] = useState([])
 
@@ -30,10 +35,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   }
 
   const getProductQuantity = (productId: string) => {
-    const item = cart.find(
-      (item: { id: string; quantity: number }) => item.id === productId
-    )
-    return item ? item.quantity : 0
+    const item = cart.find((item: CartItem) => item.id === productId) ?? {
+      quantity: 0,
+    }
+    return item.quantity
   }
 
   return (
